@@ -1,7 +1,8 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 
 const Ticket = () => {
     const total = useRef(0)
+    const [state1, setState1] = useState("")
     const [state, setState] = useState({
         Water: 0,
         Chilled: 0,
@@ -22,9 +23,13 @@ const handleChange = (e) => {
         })
     }
 
-  //   const handleChang = (e) => {
-  //         total.current = e.target.value  
-  // }
+    const handleChang1 = (e) => {
+        setState1(e.target.value)
+
+  }
+  useEffect(()=>{
+    setState1(total.current)
+  },[total.current])
 
   
 
@@ -40,7 +45,7 @@ const handleChange = (e) => {
             <br></br>
             <input type={'number'} placeholder='Electricity' name="Electricity"  onChange={handleChange} />
             <br></br>
-            <input type={'number'} placeholder='total' readOnly  name="total"  value={total.current}/> 
+            <input type={'number'} placeholder='total'  name="total" onChange={handleChang1} value={state1}/> 
         </>
 
     )
